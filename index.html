@@ -5,14 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+    <!-- Main Quill library -->
+<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+<!-- Theme included stylesheets -->
+<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+
+
+
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/vue-router@4"></script>
+
+
+
 </head>
 
 <body>
-  <div id="app">
+  <div id="app" style="height: 100vh;">
     <div :class="{container: true, 'container-open': isOpenMenu}">
       <header class="hero">
         <p class="hero-text">
@@ -25,31 +38,54 @@
           </span>
         </p>
       </header>
-      <section class="content">
+      <router-view class="index-content"></router-view>
+      <!-- <section class="index-content">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam labore asperiores iusto nostrum minus
           sapiente minima necessitatibus. Voluptatibus hic iusto distinctio maxime magnam officia qui consequuntur
           repudiandae, totam alias labore.</p>
         <p>Exercitationem ab recusandae molestias assumenda labore eius, nemo eos quos possimus, rem voluptas magnam
           iusto velit hic libero reiciendis sunt! Aliquid veniam voluptate beatae doloremque ipsa odio, voluptatibus
           eaque alias?</p>
-        <p>Consectetur, reprehenderit in consequuntur voluptas dolores facilis sit, velit inventore, dolorum possimus
-          hic earum deleniti ad voluptatibus tempore consequatur ut! Quaerat quis magnam laudantium! Voluptas ut neque
-          impedit officiis iste?</p>
-        <p>Optio cum modi minima sed fugit illo recusandae velit enim dolore dolores est accusamus, vitae, tempora
-          necessitatibus, neque illum corrupti quae deserunt similique? Hic quaerat maxime harum quasi quos?
-          Praesentium.</p>
-        <p>Eveniet illum, qui, eligendi et quidem quisquam explicabo facere reprehenderit, officia dolor modi placeat
-          earum libero vitae in rerum. Consectetur tempora accusantium debitis quisquam, cum saepe modi aliquam eveniet
-          sapiente.</p>
-      </section>
+
+      </section> -->
       <section :class="{menu: true,  'menu-close': !isOpenMenu}"><smenu></smenu></section>
-      <section class="footer">FOOTER</section>
+      <section class="footer">
+        <div class="wb-footer"> @ABC by tyic. Since 2000 - {{ new Date().getFullYear() }}</div>
+        <bottomb class="nav-footer" />
+      </section>
     </div>
   </div>
 </body>
 <script type="module">
   const { createApp } = Vue;
   import MenuComponent from './components/slideMenu/menu.js';
+  import HomeComponent from './components/home/home.js';
+  import BottomBar from './components/bottombar/bottombar.js';
+  import DocEdit from './components/docEdit/docEdit.js'
+  import Login from './components/login/login.js'
+  import BookmarkDialog from './components/bookmarkDialog/bookmarkDialog.js';
+  const About = { template: '<div>About</div>' }
+
+  // 2. Define some routes
+  // Each route should map to a component.
+  // We'll talk about nested routes later.
+  function ifAuthenticated(to, from, next) {
+    console.log("🚀 ~ file: index.html:72 ~ ifAuthenticated ~ ifAuthenticated", ifAuthenticated)
+    if(localStorage.getItem('login')) {
+      next();
+      return;
+    }
+    window.location.href = '/login.html'
+  }
+  const routes = [
+    { path: '/', component: HomeComponent, beforeEnter: ifAuthenticated },
+    { path: '/about', component: About, beforeEnter: ifAuthenticated },
+    { path: '/docEdit/:id', component: DocEdit, beforeEnter: ifAuthenticated }
+  ]
+  const router = VueRouter.createRouter({
+           history: VueRouter.createWebHashHistory(),
+           routes
+    })
   const app = createApp({
     
     data() {
@@ -66,6 +102,10 @@
     }
   })
   app.component('smenu', MenuComponent);
+  app.component('bottomb', BottomBar);
+  //app.component('doc-edit', DocEdit);
+  app.component('bookmark-dialog', BookmarkDialog)
+  app.use(router);
   app.mount('#app')
 </script>
 

@@ -1,0 +1,17 @@
+<div >
+<div id="toolbar">
+  <!-- Add buttons as you would before -->
+  <button class="ql-bold">Bold</button>
+  <button class="ql-italic">italix</button>
+
+  <!-- But you can also add your own -->
+  <!-- <button id="custom-button"></button> -->
+</div>
+<div id="editor"></div>
+<div class="doc-edit-bookmark-icon" @click="openBookmarkDialog()">
+  <span class="material-symbols-outlined" style="margin-top: 0.3rem;">
+    book
+  </span>
+</div>
+<bookmark-dialog v-if="bookmarkDialog.open"></bookmark-dialog>
+</div>

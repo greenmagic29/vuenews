@@ -1,0 +1,17 @@
+<div>
+  <div class="home-container">
+    <div v-for="item in items" class="doc" @click="toDocEdit(item)">
+      <div style="display: flex; align-items: center;">
+        <span class="material-symbols-outlined">
+          description
+        </span>
+        <span :title="item.title" style="width: 10rem;">{{ item.title }}</span>
+      </div>
+      <div style="display: flex;">
+        <span class="doc-date">{{ item.modified_on }}</span>
+
+      </div>
+    </div>
+  </div>
+  <a class="home-add-btn">+</a>
+</div>

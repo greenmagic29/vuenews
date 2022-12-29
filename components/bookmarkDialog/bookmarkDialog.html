@@ -1,0 +1,19 @@
+<div class="bookmark-dialog">
+<header>Bookmarks</header>
+<section class="bookmark-item">
+  <span class="material-symbols-outlined">
+    library_books
+  </span>
+  <span>{{ word }}</span>
+  <ul>
+    <li v-for="meaning in meanings" >
+      <span>{{ meaning.speech_part }}</span>
+      <p>{{ meaning.def }}</p>
+      <p>{{ meaning.example }}</p>
+
+    </li>
+  </ul>
+  
+</section>
+
+</div>

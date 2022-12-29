@@ -1,10 +1,31 @@
 <div class="slide-menu-menu">
   <header>Menu</header>
   <ul>
-    <li>F1</li>
-    <li>F2</li>
-    <li>F3</li>
-    <li>Settings</li>
+    <li>
+      <router-link to="/" class="slide-menu-link">
+
+        Home
+        <span class="material-symbols-outlined slide-menu-icon">
+          home
+        </span>
+      </router-link>
+    </li>
+    <!-- <li>F2</li> -->
+    <li>
+      <router-link to="/about">About
+        <span class="material-symbols-outlined slide-menu-icon">
+          help
+        </span>
+      </router-link>
+    </li>
+
+    <li>
+      <router-link to="/settings" class="slide-menu-link">
+        Settings
+        <span class="material-symbols-outlined slide-menu-icon">
+          settings
+        </span>
+      </router-link>
+    </li>
   </ul>
 </div>
-

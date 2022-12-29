@@ -4,10 +4,12 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: content-box;
+    box-sizing: border-box;
 }
 
-
+html {
+    height: 100%;
+}
 /*
 * Utility Function
 */
@@ -17,22 +19,28 @@
 /*End Utility*/
 
 body {
+    height: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
 
-    background-color: aliceblue;
+    /* background-color: #fefae0; */
    
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 .container {
-    background-color: #fefae0;
+    height: 100%;
+    
     display: grid;
     grid-template-areas: 
     'hd hd hd hd hd hd hd hd hd'
     'mn mn mn mn mn mn mn mn mn'
     'ft ft ft ft ft ft ft ft ft';
+
+    grid-template-rows: auto 1fr auto;
+    
+
 }
 .container-open {
 
@@ -43,32 +51,34 @@ body {
 
     
     grid-template-areas: 
-    'hd hd hd hd hd hd hd hd hd'
+    'hd hd hd hd hd hd hd mm mm'
     'mn mn mn mn mn mn mn mm mm'
     'ft ft ft ft ft ft ft mm mm';
-
+    grid-template-columns: repeat(7, 1fr) auto auto;
 }
 
 .hero {
     grid-area: hd;
     padding: 0.5rem;
-    background-color: #dda15e;
-    
+    /* background-color: #dda15e; */
+    max-height: 60px;
     display: flex;
     align-items: center;
     /* border: 2px solid #fff; */
-    border-radius: 2rem;
-    box-shadow: 1px 1px 2px #000;
-    margin: 0.5rem 1rem 0.5rem 1rem;
+    /* border-radius: 1rem; */
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    /* margin: 0.5rem 1rem 0.5rem 1rem; */
+    border-bottom: solid 1px rgba(242, 242, 242, 1);
+
 }
 
 .hero-text {
     flex-basis: 90%;
     text-align: center;
-    font-weight: 800;
-    font-size: 3rem;
+    font-weight: 600;
+    font-size: 1.5rem;
     color: #000;
-    text-shadow: 1px 1px 2px rgb(133, 132, 91);
+    text-shadow: 1px 1px 2px rgba(133, 132, 91, 0.294);
 }
 
 .menu-icon {
@@ -78,10 +88,10 @@ body {
 }
 
 .menu-icon .material-symbols-outlined{
-    font-size: 66px;
+    font-size: 42px;
     padding-top: 0.5rem;
-    color: #000;
-    text-shadow: 1px 1px 2px rgb(133, 132, 91);
+    color: #ccd5ae;
+
 }
 
 .menu {
@@ -96,5 +106,164 @@ body {
 }
 
 /* slideMenu style*/
+.slide-menu-menu {
+    /* margin: 0.5rem 1rem 0.5rem 0rem;
+    
+    border-radius: 1rem; */
+    height: 100%;
+    padding: 1rem 0 1rem 0;
+    background-color: rgb(250,250,250);
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 
+}
+
+.slide-menu-menu header {
+    text-align: center;
+    padding-bottom: 1rem;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.slide-menu-menu ul {
+    list-style-type: none;
+}
+
+.slide-menu-menu li {
+    padding: 1rem 1rem 1rem 1rem;
+    text-align: center;
+    /* box-shadow: 1px 1px 2px rgba(0,0,0,0.2); */
+
+}
+
+.slide-menu-menu li:hover, .slide-menu-menu li:focus {
+    background-color: #dcebd4;
+    
+}
+
+.slide-menu-menu li a {
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+.slide-menu-icon {
+    padding: 0 0px 0 15px;
+}
 /* slideMenu style end*/
+
+/*content*/
+.index-content {
+    grid-area: mn;
+    min-height: min-content;
+    overflow: auto;
+    margin: 0.5rem 2rem 0.5rem 2rem;
+/* 
+    display: grid;
+    align-items: center;
+    grid-auto-flow: row;
+    grid-auto-rows: 15%; /* play with this to change height of the children, 50% will fill half 
+    grid-template-columns: unset; /* do not set template columns and rows 
+    grid-template-rows: unset;
+    overflow: auto; */
+}
+/*content end*/
+
+.footer {
+
+    /* padding: 1rem; */
+    box-shadow: rgb(0 0 0 / 8%) 0 -1px;
+    background-color: inherit;
+    font-size: 1rem;
+}
+
+.home-add-btn {
+    position: absolute;
+    bottom: 7rem;
+    right: 1rem;
+    display: block;
+    background-color: #283618;
+    color: #fefae0;
+    padding: 0.65rem 1rem;
+
+    border-radius: 50%;
+    text-align: center;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.doc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding:10px
+}
+
+.doc:hover, .doc:focus  {
+    background-color: hsl(82deg 20% 87% / 80%);
+    border-radius: 1rem;
+}
+.doc-date {
+    text-indent: 1.5rem;
+    font-size: 1rem;
+}
+
+.nav-footer {
+    display: none;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 912px) {
+    .wb-footer {
+        display: none;
+    }
+    .nav-footer {
+        display: flex;
+
+    }
+}
+
+
+.bottom-bar-link {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-decoration: none;
+}
+
+
+
+span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+  
+
+.ql-container {
+    font-size: 1.5rem;
+}
+
+.doc-edit-bookmark-icon {
+    position: absolute;
+    bottom: 5rem;
+    right: 0.5rem;
+    display: block;
+    background-color: #283618;
+    color: #fefae0;
+    padding: 0.65rem 1rem;
+
+    border-radius: 50%;
+    text-align: center;
+}
+
+.bookmark-dialog {
+    position: absolute;
+    background: #2d2f2781;
+    bottom: 0;
+    height: 3rem;
+    max-height: 50%;
+}
