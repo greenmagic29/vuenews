@@ -46,7 +46,7 @@ function customBoldHandler(paragraphId) {
 }
 export default {
   data() {
-    return { count: 0, paragraph: {}, bookmarkDialog: { open: false }, saveTimer:null }
+    return { count: 0, paragraph: {}, bookmarkDialog: { open: false, data: {} }, saveTimer:null }
   },
   methods: {
     async getParagraph() {
@@ -68,6 +68,7 @@ export default {
     },
     openBookmarkDialog() {
       this.bookmarkDialog.open = true;
+      this.bookmarkDialog.data = { paragraphId: this.$route.params.id };
     }
   },
   async mounted() {

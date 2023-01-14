@@ -13,5 +13,5 @@
     book
   </span>
 </div>
-<bookmark-dialog v-if="bookmarkDialog.open"></bookmark-dialog>
+<bookmark-dialog v-if="bookmarkDialog.open" :paragraphId="bookmarkDialog.data.paragraphId" @close="bookmarkDialog.open=false;"></bookmark-dialog>
 </div>

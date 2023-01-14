@@ -10,6 +10,10 @@
 html {
     height: 100%;
 }
+
+:root {
+    --PADDING: 1rem;
+}
 /*
 * Utility Function
 */
@@ -262,8 +266,39 @@ span {
 
 .bookmark-dialog {
     position: absolute;
-    background: #2d2f2781;
+    background: whitesmoke;
     bottom: 0;
-    height: 3rem;
+    left: 0;
+    height: 50%;
     max-height: 50%;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 1px 5px 18px #283618;
+
+    min-height: min-content;
+    overflow: auto;
+}
+
+.bookmark-dialog__header {
+    display: flex;
+    align-items: center;
+    padding: var(--PADDING);
+}
+
+.bookmark-dialog__title {
+    flex-grow: 1;
+}
+
+.bookmark-dialog__bookmark-item {
+    display: flex;
+ 
+    padding: var(--PADDING);
+    flex-direction: column;
+}
+
+.bookmark-dialog__word-container {
+    display: flex;
+}
+.bookmark-dialog__word {
+    flex-grow: 1;
 }

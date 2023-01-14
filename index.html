@@ -64,6 +64,8 @@
   import DocEdit from './components/docEdit/docEdit.js'
   import Login from './components/login/login.js'
   import BookmarkDialog from './components/bookmarkDialog/bookmarkDialog.js';
+  import BookmarkItem from './components/bookmarkItem/bookmarkItem.js';
+  
   const About = { template: '<div>About</div>' }
 
   // 2. Define some routes
@@ -105,6 +107,7 @@
   app.component('bottomb', BottomBar);
   //app.component('doc-edit', DocEdit);
   app.component('bookmark-dialog', BookmarkDialog)
+  app.component('bookmark-item', BookmarkItem)
   app.use(router);
   app.mount('#app')
 </script>
