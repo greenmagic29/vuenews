@@ -2,6 +2,7 @@ import importTemplate from '../../util/importTemplate.js';
 
 function getSelection(quill) {
   const range = quill.getSelection();
+  console.log("🚀 ~ file: docEdit.js:5 ~ getSelection ~ range", range)
   if (range) {
     if (range.length == 0) {
       console.log('User cursor is at index', range.index);
@@ -16,6 +17,8 @@ function getSelection(quill) {
 
   return null;
 }
+
+//old bold
 function customBoldHandler(paragraphId) {
   return function (value) {
     console.log("🚀 ~ file: docEdit.js:3 ~ customBoldHandler ~ value", value)
@@ -46,7 +49,7 @@ function customBoldHandler(paragraphId) {
 }
 export default {
   data() {
-    return { count: 0, paragraph: {}, bookmarkDialog: { open: false, data: {} }, saveTimer:null }
+    return { count: 0, paragraph: {title: ""}, bookmarkDialog: { open: false, data: {} }, saveTimer:null }
   },
   methods: {
     async getParagraph() {
@@ -62,6 +65,7 @@ export default {
         const resBody = JSON.parse(await res.text());
         
         this.paragraph = resBody.document;
+        
       } catch (error) {
         
       }
@@ -69,7 +73,30 @@ export default {
     openBookmarkDialog() {
       this.bookmarkDialog.open = true;
       this.bookmarkDialog.data = { paragraphId: this.$route.params.id };
+    },
+    async updateTitle() {
+      const payload = {
+        id: this.$route.params.id,
+        title: this.paragraph.title
+      };
+      try {
+        const res = await fetch(`http://localhost:3100/paragraph/title`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': localStorage.getItem('login')
+          },
+          body:JSON.stringify(payload)
+        });
+
+        
+      } catch (error) {
+        console.log("🚀 ~ file: docEdit.js:95 ~ updateTitle ~ error", error)
+        
+      }
     }
+
   },
   async mounted() {
     console.log(`abcc`);
@@ -116,7 +143,7 @@ export default {
         }).then(res => {changes = false;})
         .catch(e => {console.log(`customBoldHandler error: `, e)})
       //}
-    }, 10*1000);
+    }, 3*1000);
     quill.on('text-change', function(delta, oldDelta, source) {
       //quill.getContents()
       changes = true;
@@ -125,10 +152,28 @@ export default {
     await this.getParagraph();
     quill.setContents(this.paragraph.content);
     
-    // var customButton = document.querySelector('#custom-button');
-    // customButton.addEventListener('click', function() {
-    //   console.log('Clicked!');
-    // });
+    const customButton = document.querySelector('#bookmarkWord-icon');
+    customButton.addEventListener('click', function() {
+      const text = getSelection(quill);
+      console.log("🚀 ~ file: docEdit.js:135 ~ customButton.addEventListener ~ text", text)
+     
+      
+      //TODO: call api to save the text in db highlight words table
+      const payload = {
+        word: text,
+        paragraphId: paragraphId
+      };
+      fetch("http://localhost:3100/bookmark", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': localStorage.getItem('login')
+        },
+        body: JSON.stringify(payload)
+      }).then(res => {})
+      .catch(e => {console.log(`customBoldHandler error: `, e)})
+    });
   },
   beforeDestroy() {
     if(this.saveTimer) {

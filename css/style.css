@@ -214,13 +214,15 @@ body {
     text-indent: 1.5rem;
     font-size: 1rem;
 }
-
-.nav-footer {
+.wb-footer {
     display: none;
+}
+.nav-footer {
+    display: flex;
     justify-content: center;
 }
 
-@media only screen and (max-width: 912px) {
+/* @media only screen and (max-width: 912px) {
     .wb-footer {
         display: none;
     }
@@ -228,7 +230,7 @@ body {
         display: flex;
 
     }
-}
+} */
 
 
 .bottom-bar-link {
@@ -277,6 +279,7 @@ span {
 
     min-height: min-content;
     overflow: auto;
+    z-index: 2;
 }
 
 .bookmark-dialog__header {
@@ -298,6 +301,9 @@ span {
 
 .bookmark-dialog__word-container {
     display: flex;
+    position: sticky;
+    top: 0;
+    background-color: whitesmoke;
 }
 .bookmark-dialog__word {
     flex-grow: 1;

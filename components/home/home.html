@@ -8,10 +8,10 @@
         <span :title="item.title" style="width: 10rem;">{{ item.title }}</span>
       </div>
       <div style="display: flex;">
-        <span class="doc-date">{{ item.modified_on }}</span>
+        <span class="doc-date">{{ timeFormat(item.modified_on) }}</span>
 
       </div>
     </div>
   </div>
-  <a class="home-add-btn">+</a>
+  <a class="home-add-btn" @click="createParagraph()">+</a>
 </div>

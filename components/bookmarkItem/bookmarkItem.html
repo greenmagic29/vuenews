@@ -1,4 +1,4 @@
-<div>
+<div >
   <div class="bookmark-dialog__word-container">
     <span class="bookmark-dialog__word">{{ bookmark.word }}</span>
     <span class="material-symbols-outlined" @click="getTranslateDetails()">
@@ -6,7 +6,7 @@
     </span>
   </div>
   <ol class="meaning__translate" v-if="openedTranslate && translateDetails" >
-    <li v-for="translateDetail in translateDetails" style="list-style-position: inside;">
+    <li v-for="translateDetail in translateDetails" style="list-style-position: inside; border-top: 1px solid #80808054; margin: 1rem;">
       <span>{{ translateDetail.speech_part }}</span>
       <p>{{ translateDetail.def }}</p>
       <p>{{ translateDetail.example }}</p>

@@ -1,9 +1,12 @@
 <div >
-<div id="toolbar">
+  <input type="text" @blur="updateTitle()" v-model="paragraph.title" style="font-size: 1.5rem;">
+<div id="toolbar" style="position: sticky;top: 0;z-index: 1;background-color: whitesmoke;">
   <!-- Add buttons as you would before -->
-  <button class="ql-bold">Bold</button>
-  <button class="ql-italic">italix</button>
-
+  <!-- <button class="ql-bold">Bold</button>
+  <button class="ql-italic">italix</button>  -->
+  <button class="material-symbols-outlined"  id="bookmarkWord-icon">
+    book
+  </button>
   <!-- But you can also add your own -->
   <!-- <button id="custom-button"></button> -->
 </div>
