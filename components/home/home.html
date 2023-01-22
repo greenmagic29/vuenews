@@ -1,5 +1,15 @@
 <div>
+  <div class="top-news-container">
+    <header class="top-news-container__header">Top News</header>
+    <div v-for="(topNew, index) in topNews" class="top-new-container__news" @click="createParagraphFromNews(item, index)">
+      <div style="display: flex; align-items: center;">
+        <span style="flex-grow: 1;">{{ topNew.name }}</span>
+        <a>+</a>
+      </div>
+    </div>
+  </div>
   <div class="home-container">
+    <header class="home-container__header">Paragraph</header>
     <div v-for="item in items" class="doc" @click="toDocEdit(item)">
       <div style="display: flex; align-items: center;">
         <span class="material-symbols-outlined">

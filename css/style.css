@@ -308,3 +308,24 @@ span {
 .bookmark-dialog__word {
     flex-grow: 1;
 }
+
+.top-news-container {
+    border-bottom: solid 1px rgba(242, 242, 242, 1);
+}
+
+
+.top-new-container__news {
+    margin: 0.5rem;
+}
+
+.top-news-container__header {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #283618;
+}
+
+.home-container__header {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #283618;
+}

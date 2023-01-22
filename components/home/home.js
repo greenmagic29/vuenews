@@ -7,8 +7,10 @@ export default {
  
     
     ],
-    count: 0
+      count: 0,
+      topNews: []
     }
+    
   },
   methods: {
     async getParagraphs() {
@@ -25,6 +27,22 @@ export default {
         const result = JSON.parse(await res.text());
         this.items = result.row;
         this.count = result.count;
+        
+      }
+      catch(error) {}
+    },
+    async getNews() {
+      try {
+        const res = await fetch("http://localhost:3100/news/topNews", {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': localStorage.getItem('login')
+          },
+        });
+        const result = JSON.parse(await res.text());
+        this.topNews = result.topNews
       }
       catch(error) {}
     },
@@ -47,6 +65,25 @@ export default {
       }
       catch(error) {}
     },
+    async createParagraphFromNews(item, index) {
+      try {
+        const res = await fetch(`http://localhost:3100/news/topNews/createTopNews/${index}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': localStorage.getItem('login')
+          },
+        });
+        const result = JSON.parse(await res.text());
+        console.log("🚀 ~ file: home.js:61 ~ createParagraphFromNews ~ result", result)
+        
+        await this.toDocEdit(result)
+      }
+      catch(error) {
+        console.log("🚀 ~ file: home.js:66 ~ createParagraphFromNews ~ error", error)
+      }
+    },
     timeFormat(value) {
       if(!value) return '';
       try {
@@ -62,10 +99,10 @@ export default {
     }
   },
   async mounted() {
+    await this.getNews();
     await this.getParagraphs();
+    
   },
-  filters: {
 
-  },
   template: await importTemplate('components/home/home.html')
 }
