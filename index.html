@@ -60,6 +60,7 @@
   </div>
 </body>
 <script type="module">
+  
   const { createApp } = Vue;
   import MenuComponent from './components/slideMenu/menu.js';
   import HomeComponent from './components/home/home.js';
@@ -128,5 +129,6 @@
   app.use(router);
   app.mount('#app')
 </script>
-
+<script src="./service-worker.js">
+</script>
 </html>

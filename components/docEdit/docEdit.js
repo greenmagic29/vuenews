@@ -9,7 +9,7 @@ function getSelection(quill) {
     } else {
       const text = quill.getText(range.index, range.length);
       console.log('User has highlighted: ', text);
-      return text;
+      return text.trim();
     }
   } else {
     console.log('User cursor is not in editor');
@@ -151,12 +151,12 @@ export default {
     });
     await this.getParagraph();
     quill.setContents(this.paragraph.content);
-    
+    quill.disable()
     const customButton = document.querySelector('#bookmarkWord-icon');
     customButton.addEventListener('click', function() {
       const text = getSelection(quill);
       console.log("🚀 ~ file: docEdit.js:135 ~ customButton.addEventListener ~ text", text)
-     
+      quill.format('bold', true);
       
       //TODO: call api to save the text in db highlight words table
       const payload = {
