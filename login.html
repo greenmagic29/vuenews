@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="https://accounts.google.com/gsi/client" ></script>
+  <link rel="stylesheet" href="./css/login.css">
+  <script src="https://accounts.google.com/gsi/client"></script>
   <script src="./jwt-decode.js"></script>
   <script>
     async function handleCredRes(res) {
       console.log("🚀 ~ file: login.html:11 ~ handleCredRes ~ res", res)
       const responsePayload = jwt_decode(res.credential);
       console.log("🚀 ~ file: login.html:12 ~ handleCredRes ~ responsePayload", responsePayload)
-      
+
       const signupBody = {
         name: responsePayload.name,
         email: responsePayload.email,
@@ -24,16 +26,16 @@
           method: 'POST',
           mode: 'cors',
           headers: {
-      'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
           body: JSON.stringify(signupBody)
         });
-        if(ress.status !== 200) {
-          
+        if (ress.status !== 200) {
+
           throw Error("incorrect goolge");
         }
-        
+
         const ressBody = JSON.parse(await ress.text());
         console.log("🚀 ~ file: login.html:38 ~ handleCredRes ~ ressBody", ressBody)
 
@@ -41,38 +43,43 @@
         localStorage.setItem('user', JSON.stringify(ressBody.user));
         window.location.href = "/"
       }
-      catch(error) {
+      catch (error) {
         window.location.href = "/login.html";
       }
     }
   </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
+
 <body>
   <header></header>
-  <main>
-    <section>
-      <p>Continue with the following</p>
-        <div id="g_id_onload"
-          data-client_id="293155402509-b0pk4d2iqb3538d26j7j7evgfd37aojd.apps.googleusercontent.com"
-          data-context="signin"
-          data-ux_mode="popup"
-          data-callback="handleCredRes"
-          data-nonce=""
-          data-itp_support="true">
-        </div>
+  <main class="login__main">
+    <section class="login__section">
       
-        <div class="g_id_signin"
-          data-type="standard"
-          data-shape="rectangular"
-          data-theme="outline"
-          data-text="signin_with"
-          data-size="large"
-          data-logo_alignment="left">
-        </div>
-        <a>Forgot Password</a>
+      <p class="login__icon">
+         <span class="material-symbols-outlined">
+newspaper
+</span>
+      </p>
+      <p class="login__title">
+        OneNews 
+      </p>
+      
+      
+      <p class="login__intro">Continue with the following</p>
+      <div id="g_id_onload" data-client_id="293155402509-b0pk4d2iqb3538d26j7j7evgfd37aojd.apps.googleusercontent.com"
+        data-context="signin" data-ux_mode="popup" data-callback="handleCredRes" data-nonce="" data-itp_support="true">
+      </div>
+
+      <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
+        data-text="signin_with" data-size="large" data-logo_alignment="left">
+      </div>
+      <p class="login__footer">
+        <a href="./forgot_pwd.html">About</a>
+      </p>
     </section>
   </main>
 
 </body>
-</html>
 
+</html>

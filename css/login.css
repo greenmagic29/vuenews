@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Nunito&display=swap');
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+:root {
+  --FF: "Nunito", sans-serif;
+  --FS: clamp(1rem, 2.2vh, 1.5rem);
+}
+html {
+
+  font-size: var(--FS);
+  font-family: var(--FF);
+}
+body{
+  min-height:100vh;
+  margin: 0 auto;
+  background-color: whitesmoke;
+}
+.login__main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.login__section {
+  margin: 1rem;
+  border: 1px solid gray;
+  border-radius: 15px;
+
+  padding: 1rem;
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.login__title {
+  font-size: 3rem;
+  text-align:center;
+}
+.login__icon {
+  text-align: center;
+}
+.login__icon .material-symbols-outlined {
+  font-size: 5rem;
+}
+.login__intro {
+  margin: 1rem 0;
+}
+
+.login__footer {
+  margin: 1rem 0;
+/*   min-height: calc(100vh - 30em); */
+  text-align: center;
+}
