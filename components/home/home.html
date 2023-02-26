@@ -1,23 +1,18 @@
 <div>
   <div class="top-news-container">
     <header class="top-news-container__header">Top News</header>
-    <div v-for="(topNew, index) in topNews" class="top-new-container__news" @click="createParagraphFromNews(item, index)">
-      <div style="display: flex; align-items: center;">
-        <span style="flex-grow: 1;">{{ topNew.name }}</span>
-        <a>+</a>
-      </div>
-    </div>
+    <top-news v-for="(topNew, index) in topNews" @doc-edit="createParagraphFromNewsEvent" :topNew="topNew" :newsIndex="index"></top-news>
   </div>
   <div class="home-container">
     <header class="home-container__header">Paragraph</header>
     <div v-for="item in items" class="doc" @click="toDocEdit(item)">
-      <div style="display: flex; align-items: center;">
+      <div class="doc__desc">
         <span class="material-symbols-outlined">
           description
         </span>
-        <span :title="item.title" style="width: 10rem;">{{ item.title }}</span>
+        <span :title="item.title" class="doc__title">{{ item.title }}</span>
       </div>
-      <div style="display: flex;">
+      <div style="display: flex; justify-content: center;">
         <span class="doc-date">{{ timeFormat(item.modified_on) }}</span>
 
       </div>

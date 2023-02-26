@@ -44,7 +44,10 @@ export default {
         const result = JSON.parse(await res.text());
         this.topNews = result.topNews
       }
-      catch(error) {}
+      catch(error) {
+        console.log("home.js, fail to get the topNews", error)
+        
+      }
     },
     async toDocEdit(item) {
       this.$router.push(`/docEdit/${item.id}`)
@@ -65,23 +68,12 @@ export default {
       }
       catch(error) {}
     },
-    async createParagraphFromNews(item, index) {
-      try {
-        const res = await fetch(`http://localhost:3100/news/topNews/createTopNews/${index}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': localStorage.getItem('login')
-          },
-        });
-        const result = JSON.parse(await res.text());
-        console.log("🚀 ~ file: home.js:61 ~ createParagraphFromNews ~ result", result)
-        
+    async createParagraphFromNewsEvent(result) {
+      try {        
         await this.toDocEdit(result)
       }
       catch(error) {
-        console.log("🚀 ~ file: home.js:66 ~ createParagraphFromNews ~ error", error)
+        console.log("🚀 ~ file: home.js:66 ~ createParagraphFromNewsEvent ~ error", error)
       }
     },
     timeFormat(value) {

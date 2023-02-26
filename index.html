@@ -68,6 +68,7 @@
   import DocEdit from './components/docEdit/docEdit.js'
   import BookmarkDialog from './components/bookmarkDialog/bookmarkDialog.js';
   import BookmarkItem from './components/bookmarkItem/bookmarkItem.js';
+  import TopNewsItem from './components/topNewsItem/topNewsItem.js'
   
   const About = { template: '<div>About</div>' }
 
@@ -126,6 +127,7 @@
   //app.component('doc-edit', DocEdit);
   app.component('bookmark-dialog', BookmarkDialog)
   app.component('bookmark-item', BookmarkItem)
+  app.component('top-news', TopNewsItem)
   app.use(router);
   app.mount('#app')
 </script>
