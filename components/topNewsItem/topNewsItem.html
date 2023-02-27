@@ -4,8 +4,23 @@
     <a>+</a>
   </div>
   <section class="top-new-expand-panel" v-show="showPanel">
-    <a href="#" @click="createParagraphFromNews('min')">Minimal</a>
-    <a href="#" @click="createParagraphFromNews('med')">Medium</a>
-    <a href="#" @click="createParagraphFromNews('pri')">Prime</a>
+    <a href="#" @click="createParagraphFromNews('min')" class="top-new-select-icon">
+      <span class="material-symbols-outlined">
+        mood
+      </span>
+      <span>Minimal</span>
+    </a>
+    <a href="#" @click="createParagraphFromNews('med')" class="top-new-select-icon">
+      <span class="material-symbols-outlined">
+        emoji_objects
+      </span>
+      <span>Medium</span>
+    </a>
+    <a href="#" @click="createParagraphFromNews('pri')" class="top-new-select-icon">
+      <span class="material-symbols-outlined">
+        diamond
+      </span>
+      <span>Prime</span>
+    </a>
   </section>
 </div>
