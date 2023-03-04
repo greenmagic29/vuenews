@@ -6,7 +6,11 @@ export default {
       type: Object,
       default: () => { name: "" }
     },
-    newsIndex: Number
+    newsIndex: Number,
+    modes: {
+      type: Array,
+      default: () => []
+    }
   },
   data() {
     return { count: 0, showPanel: false }

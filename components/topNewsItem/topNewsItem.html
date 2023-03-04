@@ -4,7 +4,13 @@
     <a>+</a>
   </div>
   <section class="top-new-expand-panel" v-show="showPanel">
-    <a href="#" @click="createParagraphFromNews('min')" class="top-new-select-icon">
+    <a v-for="mode in modes" href="#" @click="createParagraphFromNews(mode.id)" class="top-new-select-icon" >
+      <span class="material-symbols-outlined">
+        {{mode.icon}}
+      </span>
+      <span class="top-new-title">{{ mode.name }}</span>
+    </a>
+    <!-- <a href="#" @click="createParagraphFromNews('min')" class="top-new-select-icon">
       <span class="material-symbols-outlined">
         mood
       </span>
@@ -21,6 +27,6 @@
         diamond
       </span>
       <span>Prime</span>
-    </a>
+    </a> -->
   </section>
 </div>

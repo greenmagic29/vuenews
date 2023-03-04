@@ -1,7 +1,7 @@
 <div>
   <div class="top-news-container">
     <header class="top-news-container__header">Top News</header>
-    <top-news v-for="(topNew, index) in topNews" @doc-edit="createParagraphFromNewsEvent" :topNew="topNew" :newsIndex="index"></top-news>
+    <top-news v-for="(topNew, index) in topNews" @doc-edit="createParagraphFromNewsEvent" :topNew="topNew" :newsIndex="index" :modes="paragraphModes"></top-news>
   </div>
   <div class="home-container">
     <header class="home-container__header">Paragraph</header>

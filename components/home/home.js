@@ -8,7 +8,8 @@ export default {
     
     ],
       count: 0,
-      topNews: []
+      topNews: [],
+      paragraphModes: []
     }
     
   },
@@ -47,6 +48,22 @@ export default {
       catch(error) {
         console.log("home.js, fail to get the topNews", error)
         
+      }
+    },
+    async getParagraphModes() {
+      try {
+        const res = await fetch("http://localhost:3100/paragraphModes", {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': localStorage.getItem('login')
+          },
+        });
+        const result = JSON.parse(await res.text());
+        this.paragraphModes = result.modes
+      } catch (error) {
+        console.log("home.js, fail to get paragraphModes", error)
       }
     },
     async toDocEdit(item) {
@@ -91,6 +108,7 @@ export default {
     }
   },
   async mounted() {
+    await this.getParagraphModes();
     await this.getNews();
     await this.getParagraphs();
     
