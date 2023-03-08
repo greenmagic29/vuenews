@@ -12,7 +12,7 @@ export default {
   methods: {
     async getBookmarks() {
       try {
-        const res = await fetch(`http://localhost:3100/bookmark?paragraphId=${ this.paragraphId }`, {
+        const res = await fetch(`https://greenmagic9.ddns.net/oneNews/bookmark?paragraphId=${ this.paragraphId }`, {
           method: 'GET',
           // params: { paragraphId: this.paragraphId },
           headers: {
