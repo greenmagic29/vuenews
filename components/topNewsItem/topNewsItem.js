@@ -19,7 +19,7 @@ export default {
     async createParagraphFromNews(mode="prime") {
       try {
         const payload = {mode};
-        const res = await fetch(`https://greenmagic9.ddns.net/oneNews/news/topNews/createTopNews/${this.newsIndex}`, {
+        const res = await fetch(`http://localhost:3100/news/topNews/createTopNews/${this.newsIndex}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

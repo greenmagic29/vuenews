@@ -20,7 +20,7 @@ export default {
     },
     async getDefination() {
       try {
-        const res = await fetch(`https://greenmagic9.ddns.net/oneNews/word?text=${this.word}`, {
+        const res = await fetch(`http://localhost:3100/word?text=${this.word}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

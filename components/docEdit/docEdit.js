@@ -31,7 +31,7 @@ function customBoldHandler(paragraphId) {
         word: text,
         paragraphId: paragraphId
       };
-      fetch("https://greenmagic9.ddns.net/oneNews/bookmark", {
+      fetch("http://localhost:3100/bookmark", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export default {
   methods: {
     async getParagraph() {
       try {
-        const res = await fetch(`https://greenmagic9.ddns.net/oneNews/paragraph/${this.$route.params.id}`, {
+        const res = await fetch(`http://localhost:3100/paragraph/${this.$route.params.id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default {
         title: this.paragraph.title
       };
       try {
-        const res = await fetch(`https://greenmagic9.ddns.net/oneNews/paragraph/title`, {
+        const res = await fetch(`http://localhost:3100/paragraph/title`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ export default {
         const payload = {
           content: data.ops
         }
-        fetch("https://greenmagic9.ddns.net/oneNews/paragraph/" + paragraphId, {
+        fetch("http://localhost:3100/paragraph/" + paragraphId, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ export default {
         word: text,
         paragraphId: paragraphId
       };
-      fetch("https://greenmagic9.ddns.net/oneNews/bookmark", {
+      fetch("http://localhost:3100/bookmark", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
