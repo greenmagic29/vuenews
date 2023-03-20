@@ -10,7 +10,7 @@
         <span class="material-symbols-outlined">
           description
         </span>
-        <span :title="item.title" class="doc__title">{{ item.title }}</span>
+        <span :title="item.title" class="doc__title">({{ item.mode_name }}) {{ item.title }}</span>
       </div>
       <div style="display: flex; justify-content: center;">
         <span class="doc-date">{{ timeFormat(item.modified_on) }}</span>

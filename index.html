@@ -19,13 +19,14 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://unpkg.com/vue-router@4"></script>
-  
+  <script src="./service-worker.js"></script>
 
 
 </head>
 
 <body>
   <div id="app" style="height: 100vh;">
+    <button onclick="initServiceWorker()">show notification</button>
     <div :class="{container: true, 'container-open': isOpenMenu}">
       <header class="hero">
         <span class="material-symbols-outlined" @click="goBack()" v-if="showBack">
@@ -41,6 +42,7 @@
           </span>
         </p>
       </header>
+     
       <router-view class="index-content"></router-view>
       <!-- <section class="index-content">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam labore asperiores iusto nostrum minus
@@ -55,6 +57,7 @@
       <section class="footer">
         <div class="wb-footer"> @ABC by tyic. Since 2000 - {{ new Date().getFullYear() }}</div>
         <bottomb class="nav-footer" />
+        
       </section>
     </div>
   </div>
@@ -131,6 +134,6 @@
   app.use(router);
   app.mount('#app')
 </script>
-<script src="./service-worker.js">
+
 </script>
 </html>

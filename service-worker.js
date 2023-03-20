@@ -13,13 +13,8 @@
       return outputArray;
     }
 
-    const publicKey = 'BGzOOtvoTdmQ4c0Ni-25XL7kF6xaDDUnXKewgqdY6MMcTpL_vjBf-rzzn97jUq4C2pHbvfXtXJeT569nyBXCNUw';
-    const subscribeOptions = {
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(publicKey)
-    };
 
-    function subscribeUserToPush() {
+    function subscribeUserToPush(subscribeOptions) {
       return navigator.serviceWorker.register('./sw.js')
       .then(function(registration) {
         //registration.showNotification('test');
@@ -31,12 +26,27 @@
       });
     }
 
-    if (Notification && Notification.permission !== "granted") {
-      Notification.requestPermission(function (status) {
-        if (Notification.permission !== status) {
-          Notification.permission = status;
-        }
-      });
-    }
 
-    const pushSubscription = subscribeUserToPush();
+    async function initServiceWorker() {
+      console.log("🚀 ~ file: service-worker.js:5555 ~ Notification.permission:", Notification.permission)
+      const publicKey = 'BGzOOtvoTdmQ4c0Ni-25XL7kF6xaDDUnXKewgqdY6MMcTpL_vjBf-rzzn97jUq4C2pHbvfXtXJeT569nyBXCNUw';
+      const subscribeOptions = {
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(publicKey)
+      };
+
+      console.log("🚀 ~ file: service-worker.js:5555 ~ Notification.permission:", Notification.permission)
+      if (Notification && Notification.permission !== "granted") {
+        console.log("🚀 ~ file: service-worker.js:37 ~ Notification.permission:", Notification.permission)
+        Notification.requestPermission().then((permission)=>{        
+          if(permission === "granted") {
+          subscribeUserToPush(subscribeOptions);
+        }})
+
+
+      }
+      else if (Notification && Notification.permission === "granted"){
+        // console.log("🚀 ~ file: service-worker.js:44 ~ Notification.permission:", Notification.permission)
+        // const pushSubscription = subscribeUserToPush(subscribeOptions);
+      }
+    }
