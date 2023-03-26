@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./css/login.css">
   <script src="https://accounts.google.com/gsi/client"></script>
   <script src="./jwt-decode.js"></script>
+  <script src="./env_login.js"></script>
   <script>
     async function handleCredRes(res) {
       console.log("🚀 ~ file: login.html:11 ~ handleCredRes ~ res", res)
@@ -21,9 +22,11 @@
         profilePic: responsePayload.picture,
         googleToken: res.credential
       };
+      
       try {
-        const ress = await fetch("http://localhost:3100/signup", {
+        const ress = await fetch(`${gbackendPath}signup`, {
           method: 'POST',
+          
           mode: 'cors',
           headers: {
             'Content-Type': 'application/json'
@@ -46,12 +49,14 @@
       catch (error) {
         window.location.href = "/login.html";
       }
+
     }
+
   </script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
-<body>
+<body >
   <header></header>
   <main class="login__main">
     <section class="login__section">

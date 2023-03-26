@@ -1,5 +1,5 @@
 import importTemplate from '../../util/importTemplate.js';
-
+import {backendPath} from '../../env.js';
 export default {
   props: {
     paragraphId: {
@@ -12,7 +12,7 @@ export default {
   methods: {
     async getBookmarks() {
       try {
-        const res = await fetch(`http://localhost:3100/bookmark?paragraphId=${ this.paragraphId }`, {
+        const res = await fetch(`${backendPath}/bookmark?paragraphId=${ this.paragraphId }`, {
           method: 'GET',
           // params: { paragraphId: this.paragraphId },
           headers: {

@@ -1,5 +1,5 @@
 import importTemplate from '../../util/importTemplate.js';
-
+import {backendPath} from '../../env.js';
 export default {
   props: {
     bookmark: {
@@ -20,7 +20,7 @@ export default {
     },
     async getDefination() {
       try {
-        const res = await fetch(`http://localhost:3100/word?text=${this.word}`, {
+        const res = await fetch(`${backendPath}/word?text=${this.word}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

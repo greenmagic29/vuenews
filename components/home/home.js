@@ -1,5 +1,5 @@
 import importTemplate from '../../util/importTemplate.js';
-
+import {backendPath} from '../../env.js';
 export default {
   data() {
     return { 
@@ -17,7 +17,7 @@ export default {
     async getParagraphs() {
       console.log("🚀 ~ file: home.js:47 ~ getParagraphs ~ getParagraphs starts")
       try {
-        const res = await fetch("http://localhost:3100/paragraph", {
+        const res = await fetch(`${backendPath}/paragraph`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export default {
     },
     async getNews() {
       try {
-        const res = await fetch("http://localhost:3100/news/topNews", {
+        const res = await fetch(`${backendPath}/news/topNews`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export default {
     },
     async getParagraphModes() {
       try {
-        const res = await fetch("http://localhost:3100/paragraphModes", {
+        const res = await fetch(`${backendPath}/paragraphModes`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export default {
     },
     async createParagraph() {
       try {
-        const res = await fetch("http://localhost:3100/paragraph", {
+        const res = await fetch(`${backendPath}/paragraph`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
