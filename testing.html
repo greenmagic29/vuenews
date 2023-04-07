@@ -6,12 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    async function abc() {
-      await fetch("https://greenmagic9.ddns.net/oneNews/test")
-    }
+    const module = {};
+  </script>
+  <script type="module">
+    import textToVoice from './util/textToVoice.js'
+    module.textToVoice = textToVoice;
+    // async function abc() {
+    //   await fetch("https://greenmagic9.ddns.net/oneNews/test")
+    // }
   </script>
 </head>
-<body onload="abc()">
-  
+<body >
+  <button onclick="module.textToVoice('testing')">testing voice</button>
 </body>
 </html>
