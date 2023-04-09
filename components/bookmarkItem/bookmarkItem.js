@@ -1,5 +1,6 @@
 import importTemplate from '../../util/importTemplate.js';
 import {backendPath} from '../../env.js';
+import  textToVoice from '../../util/textToVoice.js';
 export default {
   props: {
     bookmark: {
@@ -11,6 +12,14 @@ export default {
     return { count: 0, openedTranslate: false, translateDetails: null, }
   },
   methods: {
+    async speak(word) {
+      try {
+        await textToVoice(word)
+      } catch (error) {
+        console.log("🚀 ~ file: bookmarkItem.js:18 ~ speak ~ error:", error)
+        
+      }
+    },
     async getTranslateDetails() {
       //if it is closed and no translate details, get the defination
       if(this.openedTranslate === false && this.translateDetails === null ) {

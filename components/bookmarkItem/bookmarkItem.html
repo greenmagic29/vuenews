@@ -1,6 +1,9 @@
 <div >
   <div class="bookmark-dialog__word-container">
     <span class="bookmark-dialog__word">{{ bookmark.word }}</span>
+    <span class="material-symbols-outlined" @click="speak(bookmark.word)">
+      headphones
+    </span>
     <span class="material-symbols-outlined" @click="getTranslateDetails()">
       zoom_in
     </span>
