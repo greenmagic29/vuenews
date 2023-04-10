@@ -1,3 +1,5 @@
+    
+    import {backendPath} from './env.js';
     function urlBase64ToUint8Array(base64String) {
       var padding = '='.repeat((4 - base64String.length % 4) % 4);
       var base64 = (base64String + padding)
@@ -14,20 +16,25 @@
     }
 
 
-    function subscribeUserToPush(subscribeOptions) {
-      return navigator.serviceWorker.register('./sw.js')
-      .then(function(registration) {
-        //registration.showNotification('test');
-        return registration.pushManager.subscribe(subscribeOptions);
-      })
-      .then(function(pushSubscription) {
-        console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
-        return pushSubscription;
+    async function subscribeUserToPush(subscribeOptions) {
+      const registration = await navigator.serviceWorker.register('./sw.js');
+      const pushSubscription = await registration.pushManager.subscribe(subscribeOptions);
+      //console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+      //send and save the subscription
+      const res = await fetch(`${backendPath}/webPush`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': localStorage.getItem('login')
+        },
+        body: JSON.stringify({ subscription: pushSubscription })
       });
+      return pushSubscription;
     }
 
 
-    async function initServiceWorker() {
+    export default async function initServiceWorker() {
       console.log("🚀 ~ file: service-worker.js:5555 ~ Notification.permission:", Notification.permission)
       const publicKey = 'BGzOOtvoTdmQ4c0Ni-25XL7kF6xaDDUnXKewgqdY6MMcTpL_vjBf-rzzn97jUq4C2pHbvfXtXJeT569nyBXCNUw';
       const subscribeOptions = {
