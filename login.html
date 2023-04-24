@@ -9,7 +9,13 @@
   <link rel="stylesheet" href="./css/login.css">
   <script src="https://accounts.google.com/gsi/client"></script>
   <script src="./jwt-decode.js"></script>
-  <script src="./env_login.js"></script>
+  <script>
+    const login_html_module = {};
+  </script>
+  <script type="module">
+    import {backendPath} from './env.js'
+    login_html_module.backendPath = backendPath;
+  </script>
   <script>
     async function handleCredRes(res) {
       console.log("🚀 ~ file: login.html:11 ~ handleCredRes ~ res", res)
@@ -24,7 +30,7 @@
       };
       
       try {
-        const ress = await fetch(`${gbackendPath}signup`, {
+        const ress = await fetch(`${login_html_module.backendPath}signup`, {
           method: 'POST',
           
           mode: 'cors',
