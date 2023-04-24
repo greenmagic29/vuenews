@@ -1,7 +1,8 @@
 <div class="top-new-container__news">
   <div style="display: flex; align-items: center;" @click="togglePanel()">
     <span style="flex-grow: 1;">{{ topNew.name }}</span>
-    <a>+</a>
+    <a v-show="!showPanel">+</a>
+    <a v-show="showPanel">-</a>
   </div>
   <section class="top-new-expand-panel" v-show="showPanel">
     <a v-for="mode in modes" href="#" @click="createParagraphFromNews(mode.id)" class="top-new-select-icon" >

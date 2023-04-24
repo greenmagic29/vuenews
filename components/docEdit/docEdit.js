@@ -144,11 +144,7 @@ export default {
         .catch(e => {console.log(`customBoldHandler error: `, e)})
       //}
     }, 3*1000);
-    quill.on('text-change', function(delta, oldDelta, source) {
-      //quill.getContents()
-      changes = true;
-      
-    });
+-
     await this.getParagraph();
     quill.setContents(this.paragraph.content);
     quill.disable()
@@ -173,6 +169,12 @@ export default {
         body: JSON.stringify(payload)
       }).then(res => {})
       .catch(e => {console.log(`customBoldHandler error: `, e)})
+    });
+    //this checking must create after quill.setContents to prevent paragraph from save when first load
+    quill.on('text-change', function(delta, oldDelta, source) {
+      //quill.getContents()
+      changes = true;
+      
     });
   },
   beforeDestroy() {

@@ -25,7 +25,7 @@ html {
 body {
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
+    font-size: 20px;
 
     background-color: #fefae0; 
    
@@ -358,4 +358,28 @@ span {
     margin: 0.5rem 0;
     font-size: 1rem;
     color: #283618;
+}
+
+.webpush-banner__section {
+    display: flex;
+    position:fixed;
+    bottom: 0;
+    background-color: antiquewhite;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    height: 17%;
+
+}
+
+.webpush-banner__p {
+    padding: 1rem;
+}
+
+.webpush-banner__footer {
+    align-self: end;
+    margin: 1rem;
+
+    margin-top: 0;
 }

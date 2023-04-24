@@ -27,13 +27,22 @@
     import serviceWorker from './service-worker.js';
     index_html_module.serviceWorker = serviceWorker;
   </script>
-
+  <script>
+    function hideWebpuhsBanner() {
+      document.getElementById('webpush-banner__section').style.display = 'none';
+    }
+    function initBody() {
+      if(Notification && Notification.permission === "granted") {
+        hideWebpuhsBanner()
+      }
+    }
+  </script>
 
 </head>
 
-<body>
+<body onload="initBody()">
   <div id="app" style="height: 100vh;">
-    <button onclick="index_html_module.serviceWorker()">show notification</button>
+    <!-- <button onclick="index_html_module.serviceWorker()">show notification</button> -->
     <div :class="{container: true, 'container-open': isOpenMenu}">
       <header class="hero">
         <span class="material-symbols-outlined" @click="goBack()" v-if="showBack">
@@ -68,6 +77,13 @@
       </section>
     </div>
   </div>
+  <section class="webpush-banner__section" id="webpush-banner__section">
+    <p class="webpush-banner__p">Want to receive reminder everyday? Allow notification in your browser.</p>
+    <footer class="webpush-banner__footer">
+      <a onclick="hideWebpuhsBanner()" >Cancel</a>
+      <a onclick="index_html_module.serviceWorker();hideWebpuhsBanner()">Confirm</a>
+    </footer>
+  </section>
 </body>
 <script type="module">
   
