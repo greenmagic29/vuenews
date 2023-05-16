@@ -8,11 +8,15 @@
       zoom_in
     </span>
   </div>
-  <ol class="meaning__translate" v-if="openedTranslate && translateDetails" >
-    <li v-for="translateDetail in translateDetails" style="list-style-position: inside; border-top: 1px solid #80808054; margin: 1rem;">
-      <span>{{ translateDetail.speech_part }}</span>
-      <p>{{ translateDetail.def }}</p>
-      <p>{{ translateDetail.example }}</p>
+  <ul class="meaning__translate" v-if="openedTranslate && translateDetails" >
+    <li style="list-style-position: inside; border-top: 1px solid #80808054; margin: 1rem;">
+      <span>{{ translateDetails.phonetic }}</span>
+      <p>{{ translateDetails.definition }}</p>
+      <p>{{ translateDetails.translation }}</p>
+
+      <p v-for="exch in translateDetails.exchange">
+        {{ exch }}
+      </p>
     </li>
-  </ol>
+  </ul>
 </div>

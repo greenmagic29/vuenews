@@ -1,5 +1,5 @@
 import importTemplate from '../../util/importTemplate.js';
-import {backendPath} from '../../env.js';
+import {backendPath, frontendPath} from '../../env.js';
 export default {
   data() {
     return { 
@@ -30,7 +30,10 @@ export default {
         this.count = result.count;
         
       }
-      catch(error) {}
+      catch(error) {
+        console.log("🚀 ~ file: home.js:34 ~ getParagraphs ~ error:", error)
+        
+      }
     },
     async getNews() {
       try {

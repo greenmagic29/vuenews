@@ -38,8 +38,9 @@ export default {
           },
         });
         const resBody = JSON.parse(await res.text());
-        this.translateDetails = resBody.def.meanings;
+        this.translateDetails = resBody.def;
       } catch (error) {
+        console.log("🚀 ~ file: bookmarkItem.js:43 ~ getDefination ~ error:", error)
         
       }
     }
